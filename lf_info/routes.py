@@ -11,7 +11,7 @@ def setup_routes(app):
 
 @bp.route("/")
 def index():
-    return render_template("index.html", welcome_text="Welcome to Lejre Fitness Info!")
+    return render_template("activities_reload.html")
 
 
 @bp.route("/activity_list")
