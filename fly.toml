@@ -9,6 +9,15 @@ primary_region = 'fra'
 [build]
   dockerfile = "docker/Dockerfile"
 
+[env]
+  API_BASE_URL=https://foreninglet.dk/api/
+  API_VERSION=version=1
+  API_MEMBERS_API=members
+  API_ACTIVITIES_API=activities
+  API_RESIGNED_MEMBERS_API=members/status/resigned
+  MEMBERSHIP_KEYWORDS=3 måneders medlemskab, 6 måneders medlemskab, 12 måneders medlemskab
+  ACTIVITY_KEYWORDS=holdtræning, personlig træning, holdtræning, personlig træning
+
 [http_service]
   internal_port = 8000
   force_https = true
