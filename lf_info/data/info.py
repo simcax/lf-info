@@ -113,7 +113,6 @@ class Info:
             date_str[1] = self._month_mapper(date_str[1])
             date_str = " ".join(date_str)
         except IndexError:
-            print(f"IndexError: {date_str}")
             date_str = "Unknown"
 
         return date_str
