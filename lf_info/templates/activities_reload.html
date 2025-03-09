@@ -6,55 +6,9 @@
     <title>Holdtræning og aktiviteter i Lejre Fitness</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #3498db;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        .canceled {
-            background: repeating-linear-gradient(
-                45deg,
-                #f87171,
-                #f87171 10px,
-                #fca5a5 10px,
-                #fca5a5 20px
-            );
-            color: white;
-            animation: slide 2s linear infinite;
-        }
-        @keyframes slide {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 0%; }
-        }
-        @keyframes slideDown {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(calc(100vh - 100%));
-            }
-        }
-        .bg-light-green-1 {
-            background-color: #d4edda;
-        }
-        .bg-light-green-2 {
-            background-color: #c3e6cb;
-        }
-    </style>
+    <link href="/css/logoanimation.css" rel="stylesheet">
+    <link href="/css/ticker.css" rel="stylesheet">
+    
 </head>
 <body class="bg-gray-100 text-gray-900">
     <div class="container mx-auto p-4">
@@ -70,7 +24,9 @@
         </div>
     </div>
     <img src="/images/FullColor_TransparentBg_1024x1024_72dpi.png" alt="Lejre Fitness Logo" 
-         class="fixed top-0 left-0 h-20 w-auto transform transition-transform duration-1000 ease-in-out"
+        class="fixed top-0 left-0 h-20 w-auto transform transition-transform duration-1000 ease-in-out z-50"
          style="animation: slideDown 10s ease-in-out forwards;">
+    <div hx-swap="innerHTML" hx-get="/ticker" hx-trigger="load"></div>
+    
 </body>
 </html>

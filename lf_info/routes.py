@@ -29,3 +29,18 @@ def activities_reload():
 @bp.route("/images/<filename>")
 def images(filename):
     return send_from_directory("static/images", filename)
+
+
+@bp.route("/css/<filename>")
+def styles(filename):
+    return send_from_directory("static/css", filename)
+
+
+@bp.route("/ticker")
+def ticker():
+    ticker_items = [
+        "Har du husket at sætte et profilbillede på din profil?",
+        "Vi skifter snart over til kun at have halvårsmedlemskaber",
+        "Generalforsamlingen er nu veloverstået, referatet er sendt ud på mail",
+    ]
+    return render_template("ticker.html", ticker_items=ticker_items)

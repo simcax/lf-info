@@ -1,0 +1,14 @@
+<div class="ticker-container fixed bottom-0 left-0 h-20 w-full bg-gray-800 text-white text-center p-2">
+<div class="ticker-wrapper">
+    <div class="ticker-transition">
+        
+    {% for ticker_item in ticker_items %}
+        <div class="ticker-item text-3xl font-semibold">
+            {{ ticker_item }}
+        </div>
+    {% endfor %}
+        
+    </div>
+</div>
+</div>
+
