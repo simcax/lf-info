@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, send_from_directory
+from loguru import logger
 
 from .data.info import Info
 from .data.web_texts import WebTexts
@@ -45,3 +46,9 @@ def ticker():
     ticker_items.append(" " * 60000)
     ticker_items.append(" " * 60000 + "*")
     return render_template("ticker.html", ticker_items=ticker_items)
+
+
+@bp.route("/register_page_load")
+def register_page_load():
+    logger.info("Page was loaded.")
+    return "Page load registered"
