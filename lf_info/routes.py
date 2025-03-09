@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, send_from_directory
 
 from .data.info import Info
+from .data.web_texts import WebTexts
 
 bp = Blueprint("main", __name__)
 
@@ -38,9 +39,9 @@ def styles(filename):
 
 @bp.route("/ticker")
 def ticker():
-    ticker_items = [
-        "Har du husket at sætte et profilbillede på din profil?",
-        "Vi skifter snart over til kun at have halvårsmedlemskaber",
-        "Generalforsamlingen er nu veloverstået, referatet er sendt ud på mail",
-    ]
+    ticker_items = WebTexts().get_ticker_texts_ticker()
+    # Add a couple of long blank line to the ticker items
+    ticker_items.append(" " * 60000)
+    ticker_items.append(" " * 60000)
+    ticker_items.append(" " * 60000 + "*")
     return render_template("ticker.html", ticker_items=ticker_items)

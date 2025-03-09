@@ -204,6 +204,8 @@ dependencies = [
     { name = "flask" },
     { name = "foreninglet-data" },
     { name = "gunicorn" },
+    { name = "loguru" },
+    { name = "requests" },
 ]
 
 [package.dev-dependencies]
@@ -218,6 +220,8 @@ requires-dist = [
     { name = "flask", specifier = ">=3.1.0" },
     { name = "foreninglet-data", specifier = ">=0.4.0" },
     { name = "gunicorn", specifier = ">=23.0.0" },
+    { name = "loguru", specifier = ">=0.7.3" },
+    { name = "requests", specifier = ">=2.32.3" },
 ]
 
 [package.metadata.requires-dev]
