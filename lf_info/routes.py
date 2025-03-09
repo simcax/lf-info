@@ -57,12 +57,3 @@ def register_page_load():
     logger.info(f"User agent: {user_agent}")
     logger.info("Page was loaded.")
     return "Page load registered"
-
-
-@bp.route("/sentry_create_error")
-def sentry_create_error():
-    try:
-        1 / 0
-    except Exception as e:
-        logger.error("An error occurred", exc_info=e)
-    return "Error created and sent to Sentry"
