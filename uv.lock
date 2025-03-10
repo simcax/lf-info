@@ -207,6 +207,7 @@ dependencies = [
     { name = "loguru" },
     { name = "requests" },
     { name = "sentry-sdk" },
+    { name = "urllib3" },
 ]
 
 [package.dev-dependencies]
@@ -224,6 +225,7 @@ requires-dist = [
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "sentry-sdk", specifier = ">=2.22.0" },
+    { name = "urllib3", specifier = ">=2.3.0" },
 ]
 
 [package.metadata.requires-dev]
