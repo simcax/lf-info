@@ -16,6 +16,7 @@ class WebTexts:
         self.url = f"https://docs.google.com/spreadsheets/d/{self.ticker_text_link_id}/export?format=csv"
 
     def get_ticker_texts_ticker(self) -> list:
+        self.web_texts = ["Nyheder kan ikke vises på nuværende tidspunkt"]
         try:
             retry = Retry(
                 total=5,
@@ -33,11 +34,9 @@ class WebTexts:
                 self.web_texts = self.filter_out_comments([row[0] for row in reader])
                 logger.info("Retrieved new ticker texts")
             else:
-                self.web_texts = ["Nyheder kan ikke vises på nuværende tidspunkt"]
                 logger.error("Failed to download file")
         except Exception as e:
             logger.exception(e)
-            self.web_texts = ["Nyheder kan ikke vises på nuværende tidspunkt"]
             logger.error("Failed to download file")
         finally:
             return self.web_texts
