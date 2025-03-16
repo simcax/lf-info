@@ -29,6 +29,9 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
+      - name: Update fly.toml with version
+        run: |
+          python3 utils/update_fly_toml.py
 
       - name: Deploy PR app to Fly.io
         id: deploy
