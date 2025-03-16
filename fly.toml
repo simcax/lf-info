@@ -1,3 +1,4 @@
+owner = "lejre-fitness"
 app = "lf-info"
 primary_region = "fra"
 [[vm]]
@@ -27,5 +28,3 @@ auto_start_machines = true
 min_machines_running = 0
 processes = [ "app",]
 
-[org]
-name = "lejre-fitness"
