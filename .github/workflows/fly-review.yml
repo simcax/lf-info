@@ -29,10 +29,15 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Setup Python
+        run: uv python install
+      - name: Install the project
+        run: uv sync --all-extras --dev
       - name: Update fly.toml with version
         run: |
-          python3 utils/update_fly_toml.py
-
+          uv run python utils/update_fly_toml.py
       - name: Deploy PR app to Fly.io
         id: deploy
         uses: superfly/fly-pr-review-apps@1.2.1
