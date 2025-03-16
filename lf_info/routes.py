@@ -1,3 +1,5 @@
+import os
+
 from flask import Blueprint, render_template, request, send_from_directory
 from loguru import logger
 
@@ -13,7 +15,8 @@ def setup_routes(app):
 
 @bp.route("/")
 def index():
-    return render_template("activities_reload.html")
+    version = os.environ.get("VERSION", "0.0.0")
+    return render_template("activities_reload.html", version=version)
 
 
 @bp.route("/activity_list")
@@ -25,7 +28,8 @@ def activity_list():
 
 @bp.route("/activities-reload")
 def activities_reload():
-    return render_template("activities_reload.html")
+    version = os.environ.get("VERSION", "0.0.0")
+    return render_template("activities_reload.html", version=version)
 
 
 @bp.route("/images/<filename>")
