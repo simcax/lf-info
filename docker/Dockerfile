@@ -1,6 +1,10 @@
 # Use Chainguard's Python image
 FROM python:3.14-rc-alpine3.21 AS builder
 
+# Install build dependencies
+RUN apk update
+RUN apk add --no-cache build-base cargo
+
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV VIRTUAL_ENV=/app/.venv
