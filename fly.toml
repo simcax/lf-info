@@ -1,6 +1,7 @@
 owner = "lejre-fitness"
 app = "lf-info"
 primary_region = "fra"
+org = "lejre-fitness"
 [[vm]]
 memory = "2gb"
 cpu_kind = "shared"

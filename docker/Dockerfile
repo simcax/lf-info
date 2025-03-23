@@ -1,5 +1,9 @@
 # Use Chainguard's Python image
-FROM python:3.13.2-slim AS builder
+FROM python:3.14-rc-alpine3.21 AS builder
+
+# Install build dependencies
+RUN apk update
+RUN apk add --no-cache build-base cargo maturin
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -21,7 +25,7 @@ RUN echo $PATH
 RUN CC=gcc uv sync --frozen --no-dev
 
 #FROM cgr.dev/chainguard/python:latest-dev
-FROM python:3.13.2-slim
+FROM python:3.14-rc-alpine3.21
 # Set the working directory
 WORKDIR /app
 
