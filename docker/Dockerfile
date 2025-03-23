@@ -3,7 +3,7 @@ FROM python:3.14-rc-alpine3.21 AS builder
 
 # Install build dependencies
 RUN apk update
-RUN apk add --no-cache build-base cargo
+RUN apk add --no-cache build-base cargo maturin
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
