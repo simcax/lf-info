@@ -1,5 +1,5 @@
-<div class="grid grid-cols-2 gap-4 mb-2 font-bold">
-    <ul class="list-none">
+<div class="w-full h-full grid grid-cols-2 gap-4 mb-2 font-bold"></div>
+    <ul class="list-none w-full"></ul>
         {% for activity in activities %}
             {% set available_spots = activity['Headlines']['Ledige pladser'] %}
             {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if '0 ledige pladser' in available_spots else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
@@ -11,7 +11,6 @@
                         {{ activity['StartDate'].strftime('%A %d-%m-%Y %H:%M').replace('Monday', 'Mandag').replace('Tuesday', 'Tirsdag').replace('Wednesday', 'Onsdag').replace('Thursday', 'Torsdag').replace('Friday', 'Fredag').replace('Saturday', 'Lørdag').replace('Sunday', 'Søndag') }}
                     </div>
                     <div class="text-gray-700">{{ activity['Headlines']['Instruktør'] }}</div>
-                    
                 </div>
             </li>
         {% endfor %}
