@@ -18,7 +18,9 @@ sentry_sdk.init(
 )
 
 # List of allowed origins
-allowed_origins = [os.environ.get("ALLOWED_ORIGIN")]
+origins = os.environ.get("ALLOWED_ORIGINS")
+# Convert comma-separated string to list
+allowed_origins = origins.split(",") if origins else []
 
 
 def cors_origin(origin):
