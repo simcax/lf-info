@@ -26,6 +26,13 @@ def activity_list():
     return render_template("activity_list.html", activities=activities)
 
 
+@bp.route("/activity_list_full")
+def activity_list_full():
+    info = Info()
+    activities = info.get_classes_list_for_web_page()
+    return render_template("snippets/activity_list_full.html", activities=activities)
+
+
 @bp.route("/activities-reload")
 def activities_reload():
     version = os.environ.get("VERSION", "0.0.0")
