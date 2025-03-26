@@ -1,34 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holdtræning og aktiviteter i Lejre Fitness</title>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="/css/logoanimation.css" rel="stylesheet">
-    <link href="/css/ticker.css" rel="stylesheet">
-    
-</head>
-<body class="bg-gray-100 text-gray-900">
-    <div class="grid grid-cols-2 gap-4 mb-2 font-bold">
-        <ul class="list-none">
-            {% for activity in activities %}
-                {% set available_spots = activity['Headlines']['Ledige pladser'] %}
-                {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if '0 ledige pladser' in available_spots else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
-                <li class="mb-2 p-4 {{ row_class }} rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold mb-2">{{ activity['Name'] }}</h2>
-                    <h4 class="text-md font-semibold mb-2">{{ activity['Headlines']['Beskrivelse'] }}</h4>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-gray-700">
-                            {{ activity['StartDate'].strftime('%A %d-%m-%Y %H:%M').replace('Monday', 'Mandag').replace('Tuesday', 'Tirsdag').replace('Wednesday', 'Onsdag').replace('Thursday', 'Torsdag').replace('Friday', 'Fredag').replace('Saturday', 'Lørdag').replace('Sunday', 'Søndag') }}
-                        </div>
-                        <div class="text-gray-700">{{ activity['Headlines']['Instruktør'] }}</div>
-                        
+<div class="grid grid-cols-2 gap-4 mb-2 font-bold">
+    <ul class="list-none">
+        {% for activity in activities %}
+            {% set available_spots = activity['Headlines']['Ledige pladser'] %}
+            {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if '0 ledige pladser' in available_spots else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
+            <li class="mb-2 p-4 {{ row_class }} rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-2">{{ activity['Name'] }}</h2>
+                <h4 class="text-md font-semibold mb-2">{{ activity['Headlines']['Beskrivelse'] }}</h4>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-gray-700">
+                        {{ activity['StartDate'].strftime('%A %d-%m-%Y %H:%M').replace('Monday', 'Mandag').replace('Tuesday', 'Tirsdag').replace('Wednesday', 'Onsdag').replace('Thursday', 'Torsdag').replace('Friday', 'Fredag').replace('Saturday', 'Lørdag').replace('Sunday', 'Søndag') }}
                     </div>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</body>
-</html>
+                    <div class="text-gray-700">{{ activity['Headlines']['Instruktør'] }}</div>
+                    
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
