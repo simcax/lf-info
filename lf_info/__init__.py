@@ -2,6 +2,7 @@ import os
 
 import sentry_sdk
 from flask import Flask
+from flask_cors import CORS
 
 from .routes import setup_routes
 
@@ -16,9 +17,21 @@ sentry_sdk.init(
     traces_sample_rate=1.0,
 )
 
+# List of allowed origins
+origins = os.environ.get("ALLOWED_ORIGINS")
+# Convert comma-separated string to list
+allowed_origins = origins.split(",") if origins else []
+
+
+def cors_origin(origin):
+    if origin in allowed_origins:
+        return origin
+    return None
+
 
 def create_app():
     app = Flask(__name__)
+    CORS(app, origins=allowed_origins)
     app.config["SECRET"] = "dev"
     app.config["SERVER_NAME"] = "localhost"
     app.config["APPLICATION_ROOT"] = "/"

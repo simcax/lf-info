@@ -1,0 +1,36 @@
+<div class="grid grid-cols-4 gap-4 mb-2 font-bold">
+    <div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>Dato & Tid 
+</div>
+    <div><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+      </svg>Instruktør</div>
+    <div>Pladser</div>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>Sted
+    </div>
+</div>
+<ul class="list-none">
+    {% for activity in activities %}
+        {% set available_spots = activity['Headlines']['Ledige pladser'] %}
+        {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if '0 ledige pladser' in available_spots else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
+        <li class="mb-2 p-4 {{ row_class }} rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-2">{{ activity['Name'] }}</h2>
+            <div class="grid grid-cols-4 gap-4">
+                <div class="text-gray-700">
+                    {{ activity['StartDate'].strftime('%A %d-%m-%Y %H:%M').replace('Monday', 'Mandag').replace('Tuesday', 'Tirsdag').replace('Wednesday', 'Onsdag').replace('Thursday', 'Torsdag').replace('Friday', 'Fredag').replace('Saturday', 'Lørdag').replace('Sunday', 'Søndag') }}
+                </div>
+                <div class="text-gray-700">{{ activity['Headlines']['Instruktør'] }}</div>
+                <div class="text-gray-700">{{ available_spots }}</div>
+                <div class="text-gray-700">{{ activity['Headlines']['Sted'] }}</div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+</div>
+</body>
+</html>

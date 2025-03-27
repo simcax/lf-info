@@ -1,4 +1,6 @@
 # pytest common fixtures
+from datetime import datetime, timedelta
+
 import pytest
 
 from lf_info import create_app
@@ -6,6 +8,21 @@ from lf_info import create_app
 
 @pytest.fixture
 def activities():
+    last_week = datetime.now() - timedelta(days=7)
+    last_week_start_time = last_week - timedelta(hours=1)
+    this_week = datetime.now()
+    this_week_start_time = this_week - timedelta(hours=1)
+    next_week = datetime.now() + timedelta(days=7)
+    next_week_start_time = next_week - timedelta(hours=1)
+
+    # Format the dates
+    last_week_str = last_week.strftime("%d. %b. %Y, kl %H:%M")
+    this_week_str = this_week.strftime("%d. %b. %Y, kl %H:%M")
+    next_week_str = next_week.strftime("%d. %b. %Y, kl %H:%M")
+    last_week_start_time_str = last_week_start_time.strftime("%d. %b. %Y, kl %H:%M")
+    this_week_start_time_str = this_week_start_time.strftime("%d. %b. %Y, kl %H:%M")
+    next_week_start_time_str = next_week_start_time.strftime("%d. %b. %Y, kl %H:%M")
+
     return [
         {
             "ActivityId": "152833",
@@ -16,8 +33,8 @@ def activities():
             "EndDate": "0000-00-00T00:00:00+0000",
             "CloseDate": "0000-00-00T00:00:00+0000",
             "ExternalDescriptions": [
-                {"Headline": "Tilmelding åbner", "Text": "27. nov. 2024, kl. 08:00"},
-                {"Headline": "Afviklingsdato", "Text": "4. dec. 2024, kl. 20:00"},
+                {"Headline": "Tilmelding åbner", "Text": last_week_str},
+                {"Headline": "Afviklingsdato", "Text": last_week_start_time_str},
                 {"Headline": "Sted", "Text": "Multisalen"},
                 {"Headline": "Ledige pladser", "Text": "2 ledige pladser (ud af 18)"},
                 {"Headline": "Instruktør", "Text": "Jane Doe"},
@@ -36,8 +53,8 @@ def activities():
             "EndDate": "0000-00-00T00:00:00+0000",
             "CloseDate": "0000-00-00T00:00:00+0000",
             "ExternalDescriptions": [
-                {"Headline": "Tilmelding åbner", "Text": "1. dec. 2024, kl. 08:00"},
-                {"Headline": "Afviklingsdato", "Text": "10. dec. 2024, kl. 20:00"},
+                {"Headline": "Tilmelding åbner", "Text": this_week_str},
+                {"Headline": "Afviklingsdato", "Text": this_week_start_time_str},
                 {"Headline": "Sted", "Text": "Yoga Hall"},
                 {"Headline": "Ledige pladser", "Text": "5 ledige pladser (ud af 20)"},
                 {"Headline": "Instruktør", "Text": "John Doe"},
@@ -56,8 +73,8 @@ def activities():
             "EndDate": "0000-00-00T00:00:00+0000",
             "CloseDate": "0000-00-00T00:00:00+0000",
             "ExternalDescriptions": [
-                {"Headline": "Tilmelding åbner", "Text": "1. dec. 2024, kl. 08:00"},
-                {"Headline": "Afviklingsdato", "Text": "10. dec. 2024, kl. 20:00"},
+                {"Headline": "Tilmelding åbner", "Text": next_week_str},
+                {"Headline": "Afviklingsdato", "Text": next_week_start_time_str},
                 {"Headline": "Sted", "Text": "Yoga Hall"},
                 {"Headline": "Ledige pladser", "Text": "5 ledige pladser (ud af 20)"},
                 {"Headline": "Instruktør", "Text": "John Doe"},
