@@ -20,16 +20,18 @@ sentry_sdk.init(
 
 # List of allowed origins
 origins = os.environ.get("ALLOWED_ORIGINS")
+origins_pattern = os.environ.get("ALLOWED_ORIGINS_REGEX_PATTERN")
 # Convert comma-separated string to list
 # Define regex for allowed origins (local dev and PR URLs)
-env_origins_pattern = os.environ.get("ALLOWED_ORIGINS_PATTERN", "")
-origins_pattern = re.compile(env_origins_pattern)
-allowed_origins = origins.split(",") if origins else []
+if origins_pattern:
+    allowed_origins = re.compile(origins_pattern)
+else:
+    allowed_origins = origins.split(",") if origins else []
 
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, origins=origins_pattern)
+    CORS(app, origins=allowed_origins)
     app.config["SECRET"] = "dev"
     app.config["SERVER_NAME"] = "localhost"
     app.config["APPLICATION_ROOT"] = "/"
