@@ -1,4 +1,5 @@
 import os
+import re
 
 import sentry_sdk
 from flask import Flask
@@ -19,19 +20,24 @@ sentry_sdk.init(
 
 # List of allowed origins
 origins = os.environ.get("ALLOWED_ORIGINS")
+origins_regex_pattern = os.environ.get("ALLOWED_ORIGINS_REGEX_PATTERN")
 # Convert comma-separated string to list
 allowed_origins = origins.split(",") if origins else []
 
 
-def cors_origin(origin):
+def cors_origin_checker(origin):
     if origin in allowed_origins:
-        return origin
-    return None
+        return True
+    if re.match(origins_regex_pattern, origin):
+        return True
+    return False
 
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, origins=allowed_origins)
+    # Configure CORS with dynamic origin checking
+    CORS(app, origins=cors_origin_checker, supports_credentials=True)
+
     app.config["SECRET"] = "dev"
     app.config["SERVER_NAME"] = "localhost"
     app.config["APPLICATION_ROOT"] = "/"
