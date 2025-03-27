@@ -28,7 +28,7 @@ allowed_origins = origins.split(",") if origins else []
 def cors_origin_checker(origin):
     if origin in allowed_origins:
         return True
-    if re.match(origins_regex_pattern, origin):
+    if origins_regex_pattern and re.match(origins_regex_pattern, origin):
         return True
     return False
 
