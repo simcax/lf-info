@@ -48,4 +48,5 @@ jobs:
               WEB_TEXT_TICKER_LINK_ID=${{ secrets.WEB_TEXT_TICKER_LINK_ID }} 
               ENVIRONMENT_NAME=${{ secrets.ENVIRONMENT_NAME }}
               ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}
+              ALLOWED_ORIGINS_REGEX_PATTERN=${{ secrets.ALLOWED_ORIGINS_REGEX_PATTERN }}
             org: "lejre-fitness"

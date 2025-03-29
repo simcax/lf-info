@@ -1,8 +1,10 @@
 import os
+import re
 
 import sentry_sdk
 from flask import Flask
 from flask_cors import CORS
+from loguru import logger
 
 from .routes import setup_routes
 
@@ -19,14 +21,14 @@ sentry_sdk.init(
 
 # List of allowed origins
 origins = os.environ.get("ALLOWED_ORIGINS")
+origins_pattern = os.environ.get("ALLOWED_ORIGINS_REGEX_PATTERN")
 # Convert comma-separated string to list
-allowed_origins = origins.split(",") if origins else []
-
-
-def cors_origin(origin):
-    if origin in allowed_origins:
-        return origin
-    return None
+# Define regex for allowed origins (local dev and PR URLs)
+if origins_pattern:
+    allowed_origins = re.compile(origins_pattern)
+    logger.info("Allowed origins regex pattern: {}", allowed_origins)
+else:
+    allowed_origins = origins.split(",") if origins else []
 
 
 def create_app():

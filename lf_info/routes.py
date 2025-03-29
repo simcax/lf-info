@@ -23,6 +23,7 @@ def index():
 def activity_list():
     info = Info()
     activities = info.get_classes_list_for_web_page()
+    logger.info(f"Request received for activity list from {request.remote_addr}")
     return render_template("activity_list.html", activities=activities)
 
 
