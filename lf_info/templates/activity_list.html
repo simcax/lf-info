@@ -2,7 +2,7 @@
     <ul class="list-none w-full"></ul>
         {% for activity in activities %}
             {% set available_spots = activity['Headlines']['Ledige pladser'] %}
-            {% set available_spots_count = available_spots.split(' ')[0]|int %}
+            {% set available_spots_count = available_spots.split(' ')[0]|int(default=0) %}
             {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if available_spots_count == 0 else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
             <li class="mb-2 p-4 {{ row_class }} rounded-lg shadow-md">
                 <h2 class="text-xl font-semibold mb-2">{{ activity['Name'] }}</h2>
