@@ -1,4 +1,6 @@
 name: Deploy Review App
+permissions:
+  contents: read
 on:
   # Run this workflow on every PR event. Existing review apps will be updated when the PR is updated.
   pull_request:
