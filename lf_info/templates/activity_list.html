@@ -9,7 +9,6 @@
                 <h4 class="text-md font-semibold mb-2">{{ activity['Headlines']['Beskrivelse'] }}</h4>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="text-gray-700">
-                        {{ available_spots_count }} pladser tilbage
                         {{ activity['StartDate'].strftime('%A %d-%m-%Y %H:%M').replace('Monday', 'Mandag').replace('Tuesday', 'Tirsdag').replace('Wednesday', 'Onsdag').replace('Thursday', 'Torsdag').replace('Friday', 'Fredag').replace('Saturday', 'Lørdag').replace('Sunday', 'Søndag') }}
                     </div>
                     <div class="text-gray-700">{{ activity['Headlines']['Instruktør'] }}</div>
