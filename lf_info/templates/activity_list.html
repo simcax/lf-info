@@ -2,12 +2,14 @@
     <ul class="list-none w-full"></ul>
         {% for activity in activities %}
             {% set available_spots = activity['Headlines']['Ledige pladser'] %}
-            {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if '0 ledige pladser' in available_spots else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
+            {% set available_spots_count = available_spots.split(' ')[0]|int %}
+            {% set row_class = 'canceled' if 'AFLYST' in activity['Name'] else 'bg-red-200' if available_spots_count == 0 else 'bg-light-green-' ~ (loop.index0 % 2 + 1) %}
             <li class="mb-2 p-4 {{ row_class }} rounded-lg shadow-md">
                 <h2 class="text-xl font-semibold mb-2">{{ activity['Name'] }}</h2>
                 <h4 class="text-md font-semibold mb-2">{{ activity['Headlines']['Beskrivelse'] }}</h4>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="text-gray-700">
+                        {{ available_spots_count }} pladser tilbage
                         {{ activity['StartDate'].strftime('%A %d-%m-%Y %H:%M').replace('Monday', 'Mandag').replace('Tuesday', 'Tirsdag').replace('Wednesday', 'Onsdag').replace('Thursday', 'Torsdag').replace('Friday', 'Fredag').replace('Saturday', 'Lørdag').replace('Sunday', 'Søndag') }}
                     </div>
                     <div class="text-gray-700">{{ activity['Headlines']['Instruktør'] }}</div>
