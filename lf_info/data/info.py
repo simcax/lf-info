@@ -123,19 +123,28 @@ class Info:
         """
         # Convert the ExternalDescriptions to a DataFrame
         df = pd.json_normalize(activity["ExternalDescriptions"])
-
-        # Find the row with Headline = "Afviklingsdato"
-        start_date_row = df[df["Headline"] == "Afviklingsdato"]
-
-        # Extract the Text value from the row
-        # But only if there is a value
-        if start_date_row.empty:
+        start_date = False
+        columns = df.columns.tolist()
+        # Check if 'Headline' column exists in the DataFrame
+        if "Headline" not in df.columns:
             start_date = "Unknown"
         else:
-            start_date = start_date_row["Text"].values[0]
+            # Find the row with Headline = "Afviklingsdato"
+            start_date_row = df[df["Headline"] == "Afviklingsdato"]
 
-        # replace the month with the English abbreviation from the month_mapper
-        start_date = self._replace_weird_month_name_with_english(start_date)
+            # Extract the Text value from the row
+            # But only if there is a value
+            if start_date_row.empty:
+                start_date = "Unknown"
+            else:
+                start_date = start_date_row["Text"].values[0]
+                # replace the month with the English abbreviation from the month_mapper
+                if start_date:
+                    start_date = self._replace_weird_month_name_with_english(start_date)
+                else:
+                    start_date = "Unknown"
+
+        # start_date_row = df[df["Headline"] == "Afviklingsdato"]
 
         # Add StartDate to the root level of the dictionary
         activity["StartDate"] = start_date
