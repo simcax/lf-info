@@ -166,6 +166,21 @@ class Info:
         """
 
         sorted_classes = sorted(classes, key=lambda x: x["StartDate"])
+        # Ensure each class has a "Ledige Pladser" headline
+        for class_ in sorted_classes:
+            headlines = [
+                ext_desc["Headline"] for ext_desc in class_["ExternalDescriptions"]
+            ]
+            # Ensure each class has a "Ledige Pladser" headline
+            for i, class_ in enumerate(sorted_classes):
+                headlines = [
+                    ext_desc["Headline"] for ext_desc in class_["ExternalDescriptions"]
+                ]
+                if "Ledige pladser" not in headlines:
+                    class_["ExternalDescriptions"].append(
+                        {"Headline": "Ledige pladser", "Text": ""}
+                    )
+                sorted_classes[i] = class_
         return sorted_classes
 
     def move_headlines_to_dict(self, classes):
