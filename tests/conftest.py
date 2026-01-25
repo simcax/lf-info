@@ -88,6 +88,38 @@ def activities():
 
 
 @pytest.fixture
+def activities_without_ledige_pladser():
+    """Fixture with activities missing the 'Ledige pladser' headline"""
+    next_week = datetime.now() + timedelta(days=7)
+    next_week_start_time = next_week - timedelta(hours=1)
+    
+    next_week_str = next_week.strftime("%d. %b. %Y, kl %H:%M")
+    next_week_start_time_str = next_week_start_time.strftime("%d. %b. %Y, kl %H:%M")
+    
+    return [
+        {
+            "ActivityId": "152840",
+            "Name": "Pilates",
+            "PriceNow": 50,
+            "OnlineEnrollmentEnabled": "1",
+            "SettlementDate": "2024-12-01T19:00:00+0000",
+            "EndDate": "0000-00-00T00:00:00+0000",
+            "CloseDate": "0000-00-00T00:00:00+0000",
+            "ExternalDescriptions": [
+                {"Headline": "Tilmelding åbner", "Text": next_week_str},
+                {"Headline": "Afviklingsdato", "Text": next_week_start_time_str},
+                {"Headline": "Sted", "Text": "Studio 1"},
+                {"Headline": "Instruktør", "Text": "Maria Hansen"},
+            ],
+            "Categories": [],
+            "DepartmentId": "6206",
+            "BackgroundColor": "#FFFFFF",
+            "Type": "6",
+        },
+    ]
+
+
+@pytest.fixture
 def client():
     app = create_app()
     app.config["TESTING"] = True

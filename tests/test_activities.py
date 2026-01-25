@@ -138,3 +138,46 @@ def test_get_classes_list_for_web_page(activities):
             assert "Instruktør" in class_["Headlines"]
             assert class_["StartDate"] > datetime.now()
             assert class_["StartDate"] < info._next_week()
+
+
+def test_sort_classes_adds_missing_ledige_pladser_headline(
+    activities_without_ledige_pladser,
+):
+    """
+    Test that sort_classes_by_start_date adds 'Ledige pladser' headline when missing.
+    This verifies the fix for the page loading issue when activities don't contain
+    a headline about the number of open spots.
+    """
+    info = Info()
+    # First update activities with start date
+    classes = info.update_activities_with_start_date(activities_without_ledige_pladser)
+    
+    # Verify the activity initially doesn't have "Ledige pladser"
+    headlines_before = [
+        ext_desc["Headline"] for ext_desc in classes[0]["ExternalDescriptions"]
+    ]
+    assert "Ledige pladser" not in headlines_before
+    
+    # Sort the classes (which should add the missing headline)
+    sorted_classes = info.sort_classes_by_start_date(classes)
+    
+    # Verify the "Ledige pladser" headline was added
+    headlines_after = [
+        ext_desc["Headline"] for ext_desc in sorted_classes[0]["ExternalDescriptions"]
+    ]
+    assert "Ledige pladser" in headlines_after
+    
+    # Verify it was added with an empty text value
+    ledige_pladser_entries = [
+        ext_desc
+        for ext_desc in sorted_classes[0]["ExternalDescriptions"]
+        if ext_desc["Headline"] == "Ledige pladser"
+    ]
+    assert len(ledige_pladser_entries) == 1
+    assert ledige_pladser_entries[0]["Text"] == ""
+    
+    # Verify other headlines are still present
+    assert "Tilmelding åbner" in headlines_after
+    assert "Afviklingsdato" in headlines_after
+    assert "Sted" in headlines_after
+    assert "Instruktør" in headlines_after
