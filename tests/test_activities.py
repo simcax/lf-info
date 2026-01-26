@@ -86,6 +86,33 @@ def test_sort_classes_by_start_date(activities):
         assert sorted_classes[i]["StartDate"] <= sorted_classes[i + 1]["StartDate"]
 
 
+def test_sort_classes_adds_missing_ledige_pladser_headline(activities):
+    """
+    Test that sort_classes_by_start_date adds missing "Ledige pladser" headline
+    """
+    info = Info()
+    # Remove "Ledige pladser" headline from first activity
+    activities[0]["ExternalDescriptions"] = [
+        desc for desc in activities[0]["ExternalDescriptions"]
+        if desc["Headline"] != "Ledige pladser"
+    ]
+    # Verify it's removed
+    headlines_before = [
+        desc["Headline"] for desc in activities[0]["ExternalDescriptions"]
+    ]
+    assert "Ledige pladser" not in headlines_before
+    
+    # Update with start date and sort
+    classes = info.update_activities_with_start_date(activities)
+    sorted_classes = info.sort_classes_by_start_date(classes)
+    
+    # Verify "Ledige pladser" was added
+    headlines_after = [
+        desc["Headline"] for desc in sorted_classes[0]["ExternalDescriptions"]
+    ]
+    assert "Ledige pladser" in headlines_after
+
+
 def test_move_headlines_to_dict(activities):
     """
     Test moving headlines to dict
