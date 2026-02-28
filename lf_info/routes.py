@@ -13,10 +13,13 @@ def setup_routes(app):
     app.register_blueprint(bp)
 
 
+def get_version():
+    return os.environ.get("VERSION", "0.0.0")
+
+
 @bp.route("/")
 def index():
-    version = os.environ.get("VERSION", "0.0.0")
-    return render_template("activities_reload.html", version=version)
+    return render_template("activities_reload.html", version=get_version())
 
 
 @bp.route("/activity_list")
@@ -36,8 +39,7 @@ def activity_list_full():
 
 @bp.route("/activities-reload")
 def activities_reload():
-    version = os.environ.get("VERSION", "0.0.0")
-    return render_template("activities_reload.html", version=version)
+    return render_template("activities_reload.html", version=get_version())
 
 
 @bp.route("/images/<filename>")
@@ -58,6 +60,11 @@ def ticker():
     ticker_items.append(" " * 60000)
     ticker_items.append(" " * 60000 + "*")
     return render_template("ticker.html", ticker_items=ticker_items)
+
+
+@bp.route("/generalforsamling")
+def generalforsamling():
+    return render_template("generalforsamling.html", version=get_version())
 
 
 @bp.route("/register_page_load")
