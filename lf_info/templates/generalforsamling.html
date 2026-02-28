@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generalforsamling - Lejre Fitness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/logoanimation.css">
+    <style>
+        .kiosk-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .content-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="kiosk-display">
+    <div class="container mx-auto px-6 py-6">
+        <!-- Header Section -->
+        <div class="text-center mb-8 slide-in">
+            <div class="flex justify-center items-center mb-4">
+                <img src="/images/FullColor_TransparentBg_1024x1024_72dpi.png" 
+                     alt="Lejre Fitness Logo" 
+                     class="h-16 w-16 mr-3">
+                <h1 class="text-4xl font-bold text-white drop-shadow-lg">
+                    Generalforsamling 2026
+                </h1>
+            </div>
+            <p class="text-lg text-white/90 font-medium">
+                Med foredrag af Anna Bogdanova
+            </p>
+            <p class="text-base text-white/80 font-medium">
+                Motivation, sundhed og mental styrke
+            </p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Event Details Card -->
+            <div class="content-card rounded-xl p-6 shadow-xl slide-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                    </svg>
+                    Dato & Tid
+                </h2>
+                <div class="space-y-3 text-base text-gray-700">
+                    <div class="flex items-center">
+                        <span class="font-semibold w-16">Dato:</span>
+                        <span class="text-xl font-bold text-blue-600">24. marts 2026</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="font-semibold w-16">Tid:</span>
+                        <span class="text-xl font-bold text-blue-600">18:30 - 21:00+</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="font-semibold w-16">Sted:</span>
+                        <span class="text-base">Kantinen på Allerslev Skole, Lejre</span>
+                    </div>
+                    <div class="mt-3 p-2 bg-purple-100 rounded-lg">
+                        <p class="text-xs text-purple-800">
+                            <strong>Program:</strong> Generalforsamling 18:30-19:30, derefter foredrag med Anna Bogdanova
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Information Card -->
+            <div class="content-card rounded-xl p-6 shadow-xl slide-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                    Vigtig Information
+                </h2>
+                <div class="space-y-3 text-sm text-gray-700">
+                    <div class="bg-yellow-100 border-l-4 border-yellow-500 p-3 rounded">
+                        <p class="font-semibold">Tilmelding påkrævet</p>
+                        <p>Tilmeld dig via ForeningLet medlemssystem</p>
+                    </div>
+                    <div class="bg-blue-100 border-l-4 border-blue-500 p-3 rounded">
+                        <p class="font-semibold">Kun for medlemmer</p>
+                        <p>Arrangementet er gratis og kun for medlemmer</p>
+                    </div>
+                    <div class="bg-green-100 border-l-4 border-green-500 p-3 rounded">
+                        <p class="font-semibold">Forslag til generalforsamling</p>
+                        <p>Send til Formand@lejre.fitness senest 14 dage før</p>
+                    </div>
+                    <div class="bg-purple-100 border-l-4 border-purple-500 p-3 rounded">
+                        <p class="font-semibold">Anna Bogdanova foredrag</p>
+                        <p>Motivation, sundhed og mental styrke - starter kl. 19:30</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agenda Section -->
+        <div class="content-card rounded-xl p-6 shadow-xl mb-6 slide-in">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+                Dagsorden
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="space-y-2">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Valg af dirigent og stemmetællere</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Bestyrelsens beretning</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Fremlæggelse af regnskab til godkendelse</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">4</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Indkomne forslag</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">5</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Forslag til handlingsplan</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">6</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Budget 2026</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">7</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Bestyrelsesvalg</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">8</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Valg af revisor og revisorsuppleant</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">9</span>
+                        <div>
+                            <h3 class="font-semibold text-sm">Eventuelt</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center slide-in">
+            <div class="content-card rounded-xl p-6 shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-800 mb-3 pulse-animation">
+                    Tilmeld dig nu!
+                </h2>
+                <p class="text-lg text-gray-600 mb-4">
+                    Generalforsamling + inspirerende foredrag med Anna Bogdanova
+                </p>
+                <div class="flex justify-center items-center space-x-6 mb-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-red-600">10. marts</div>
+                        <div class="text-sm text-gray-600">Forslag sendes til formanden</div>
+                    </div>
+                    <div class="text-4xl text-gray-300">|</div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-600">24. marts</div>
+                        <div class="text-sm text-gray-600">Generalforsamling + foredrag</div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-3">
+                    <h3 class="text-lg font-bold text-purple-800 mb-1">Anna Bogdanova</h3>
+                    <p class="text-sm text-purple-700">
+                        En af de mest efterspurgte foredragsholdere inden for motivation, sundhed og mental styrke. 
+                        Hendes foredrag handler om varige forandringer, personlig udvikling og mental robusthed.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-6 text-white/80">
+            <p class="text-base">Lejre Fitness • Version {{ version }}</p>
+        </div>
+    </div>
+
+    <script>
+        // Auto-refresh every 30 minutes for kiosk display
+        setTimeout(function() {
+            location.reload();
+        }, 1800000);
+        
+        // Add staggered animation delays
+        document.addEventListener('DOMContentLoaded', function() {
+            const slideElements = document.querySelectorAll('.slide-in');
+            slideElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -60,6 +60,12 @@ def ticker():
     return render_template("ticker.html", ticker_items=ticker_items)
 
 
+@bp.route("/generalforsamling")
+def generalforsamling():
+    version = os.environ.get("VERSION", "0.0.0")
+    return render_template("generalforsamling.html", version=version)
+
+
 @bp.route("/register_page_load")
 def register_page_load():
     # Let's gather some information about the user
